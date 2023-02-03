@@ -32,6 +32,7 @@ class _KitVideoPageState extends State<KitVideoPage> {
   String dropdownValue = 'Match Me' ;
   // String _dropdownValue = videoList.first;
 
+
   var items = [
     'Match Me',
     'Spinner',
@@ -40,7 +41,7 @@ class _KitVideoPageState extends State<KitVideoPage> {
 
   List<String> _vidURL = [
     'https://www.youtube.com/watch?v=fMYbWODfXNc',
-    'https://www.youtube.com/watch?v=drlIj0OwLJY',
+    'https://www.youtube.com/watch?v=TEg59h_LfAc',
     'https://www.youtube.com/watch?v=drlIj0OwLJY',
   ];
 
@@ -48,9 +49,9 @@ class _KitVideoPageState extends State<KitVideoPage> {
     YoutubePlayer.convertUrlToId(
         'https://www.youtube.com/watch?v=fMYbWODfXNc')!,
     YoutubePlayer.convertUrlToId(
-        'https://www.youtube.com/watch?v=drlIj0OwLJY')!,
+        'https://www.youtube.com/watch?v=TEg59h_LfAc')!,
     YoutubePlayer.convertUrlToId(
-        'https://www.youtube.com/watch?v=W-rHIsDFrzQ')!,
+        'https://www.youtube.com/watch?v=drlIj0OwLJY')!,
     // BBAyRBTfsOU,
     //  'gQDByCdjUXw',
     //  'iLnmTe5Q2Qw',
@@ -277,6 +278,7 @@ class _KitVideoPageState extends State<KitVideoPage> {
                                 : null,
                           ),
                           FullScreenButton(
+
                             controller: _controller,
                             color: Colors.blueAccent,
                           ),

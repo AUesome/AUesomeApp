@@ -1,10 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'signup.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
-
+import 'select_diagnosed.dart';
+import '../widgets/display_image_widget.dart';
+import 'package:AUesome/pages/edit_image.dart';
+import '../user/user_data.dart';
 
 class InitialProfilePage extends StatefulWidget {
   InitialProfilePage({Key? key, required this.title}) : super(key: key);
@@ -18,6 +23,7 @@ class InitialProfilePage extends StatefulWidget {
 class _InitialProfilePageState extends State<InitialProfilePage> {
 
   DateTime _selectedDate = DateTime.now();
+  final user = UserData.myUser;
 
 
 
@@ -45,85 +51,231 @@ class _InitialProfilePageState extends State<InitialProfilePage> {
         //title: Text(widget.title),
       ),
       body: Center(
-        child:  Column(
-          children: [
-            Expanded(
-              flex: 20,
-              child: Container(
-                width: 200,
-                height: 120,
-                margin: EdgeInsets.only(left:30,right: 30,bottom: 30,top: 100),
-                child: TextFormField(
-                  initialValue: 'Name',
-                  decoration: InputDecoration(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
 
+            // Expanded(
+            //   flex: 12,
+            //   child: Row(
+            //     children: [
+            //       Container(
+            //         margin: EdgeInsets.only(left: 20,top: 30, bottom: 30),
+            //         child: Text("Sign Up",
+            //             style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //                 fontSize: 30
+            //             )
+            //         ),
+            //       ),
+            //
+            //     ],
+            //     // width: 200,
+            //     // height: 75,
+            //
+            //     //Image(
+            //     //image: NetworkImage('https://codingmindsacademy.com/img/my/logo1.png'),
+            //   ),
+            // ),
 
-                    border: OutlineInputBorder(),
-                    // suffixIcon: Icon(
-                    //   Icons.error,
-                    // ),
+            Container(
+              margin: EdgeInsets.only(top:20),
+              child: InkWell(
+                  onTap: () {
+                    navigateSecondPage(EditImagePage());
+                  },
+                  child: DisplayImage(
+                    imagePath: 'https://cdn141.picsart.com/357697367045201.jpg',
+                    onPressed: () {},
+                  ),
+                focusColor: Colors.black,
+
+              ),
+            ),
+
+            Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left:30, bottom: 7, top:30),
+                  child: Text("Guardian's Name",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 18
+                      )
                   ),
                 ),
-              ),
+              ],
             ),
+            //),
+
+            // Expanded(
+            //   flex: 10,
+            //   child: Container(
+            //     margin: EdgeInsets.all(20),
+            //     child: Text(
+            //       'Signup Page',
+            //       style: TextStyle(fontSize: 20),
+            //     ),
+            //   ),
+            // ),
+
             Expanded(
-              flex: 15,
-              child: Container(
-                margin: EdgeInsets.only(top:100),
-                child: Text("Enter child's birthdate",
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                )),
+              flex: 60,
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 30,right: 30,bottom: 30),
+                    child: TextField(
+                      //controller: nameController,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+
+                          ),
+                          //hintText: "Name",
+                          hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.black)
+                      ),
+                      //decoration: InputDecoration(
+
+                      //labelText: '',
+                      //),
+                    ),
+                  ),
+
+
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left:30, bottom: 7),
+                        child: Text("Child's Name",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 18
+                            )
+                        ),
+                      ),
+                    ],
+                  ),
+
+
+                  Container(
+                    margin: EdgeInsets.only(left: 30,right: 30,bottom: 30),
+                    child: TextField(
+                      //controller: emailController,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+
+                          ),
+                          //hintText: "Emai",
+                          hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.black)
+                      ),
+                      //decoration: InputDecoration(
+
+                      //labelText: '',
+                      //),
+                    ),
+                  ),
+
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left:30, bottom: 7),
+                        child: Text("Child's Date of Birth",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 18
+                            )
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(
+                    height: 70,
+                    child: ScrollDatePicker(
+                      selectedDate: _selectedDate,
+                      locale: Locale('en'),
+                      onDateTimeChanged: (DateTime value) {
+                        setState(() {
+                          _selectedDate = value;
+                        });
+                      },
+                    ),
+                  ),
+
+
+                  Expanded(
+                    flex: 10,
+                    child: Column(
+                      children: [
+
+                        Container(
+                          margin: EdgeInsets.only(left: 10,right: 10, top:30),
+                          width: 300,
+                          height: 75,
+
+                          child: ElevatedButton(
+                            onPressed: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => SelectCondiitonPage(title: 'Speech Level Page')),
+                              );
+
+
+                            },
+                            child: Text("Continue",
+                                style:TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700
+                                )),
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.blueAccent.shade100),
+
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                      //side: BorderSide(color: Colors.black)
+                                    )
+                                )
+                            ),
+                          ),
+
+                        ),
+
+                      ],
+                    ),
+                  )
+
+
+                ],
               ),
+
             ),
-          Expanded(
-            flex:60,
-            child: SizedBox(
-            height: 250,
-            child: ScrollDatePicker(
-            selectedDate: _selectedDate,
-            locale: Locale('en'),
-            onDateTimeChanged: (DateTime value) {
-              setState(() {
-                  _selectedDate = value;
-                  });
-                },
-              ),
-            ),
-          ),
-      /// Showcase second image source
-      // SizedBox(
-      //   height: 250,
-      //   child: ScrollDatePicker(
-      //     selectedDate: _selectedDate,
-      //     locale: Locale('ko'),
-      //     scrollViewOptions: DatePickerScrollViewOptions(
-      //       year: ScrollViewDetailOptions(
-      //         label: '년',
-      //         margin: const EdgeInsets.only(right: 8),
-      //       ),
-      //       month: ScrollViewDetailOptions(
-      //         label: '월',
-      //         margin: const EdgeInsets.only(right: 8),
-      //       ),
-      //       day: ScrollViewDetailOptions(
-      //         label: '일',
-      //       )
-      //     ),
-      //     onDateTimeChanged: (DateTime value) {
-      //       setState(() {
-      //         _selectedDate = value;
-      //       });
-      //     },
-      //   ),
-      // ),
-      ],
+
+
+
+          ],
+        ),
       ),
-      ),
+
+
 
         );
 
+
+  }
+
+  FutureOr onGoBack(dynamic value) {
+    setState(() {});
+  }
+
+  // Handles navigation and prompts refresh.
+  void navigateSecondPage(Widget editForm) {
+    Route route = MaterialPageRoute(builder: (context) => editForm);
+    Navigator.push(context, route).then(onGoBack);
   }
 
 

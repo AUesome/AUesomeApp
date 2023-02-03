@@ -1,3 +1,4 @@
+import 'package:AUesome/kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'set_userprofile.dart';
@@ -9,10 +10,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
 import 'select_diagnosed.dart';
-//import 'kit_videos.dart';
-import 'bruh.dart';
-import 'kitvids.dart';
+import 'kit_videos.dart';
+import 'schedule.dart';
+//import 'kitvids.dart';
 import 'dashboard.dart';
+import 'schedule.dart';
+import 'kit.dart';
+import 'package:flutter/material.dart';
+import 'package:AUesome/pages/profile_page.dart';
+import 'package:flutter/services.dart';
+import 'set_userprofile.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
@@ -25,6 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AUesome',
+      debugShowCheckedModeBanner:false,
       theme: ThemeData(
         fontFamily: 'SF Pro Display Regular',
         //scaffoldBackgroundColor: const Color(0xFFFFFF),
@@ -37,8 +45,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
 
+
     ),
-      home: MyHomePage(title: ''),
+      home: StartPage(title: ''),
     );
   }
 }
@@ -72,11 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState(){
     _pagelist
 
-      ..add(StartPage(title:"",))
-      ..add(LoginPage(title:"",))
+      ..add(SchedulePage(title:"",))
+      ..add(KitPage(title:"",))
       ..add(DashboardPage(title:"",))
       ..add(KitVideoPage(title:"",))
-      ..add(SignupPage(title:""));
+      ..add(InitialProfilePage(title: ""));
+      //..add(ProfilePage());
+
     super.initState();
   }
 
@@ -114,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: Colors.lightBlueAccent
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.dashboard_outlined),
+                icon: Icon(Icons.home),
                 label: '',
                 backgroundColor: Colors.lightBlueAccent
             ),

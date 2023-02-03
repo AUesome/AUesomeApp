@@ -6,6 +6,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'select_diagnosed.dart';
 import 'main.dart';
 
 class SignupPage extends StatefulWidget {
@@ -189,7 +190,7 @@ class _SignupPageState extends State<SignupPage> {
 
                   Container(
                     width: 300,
-                    height:50,
+                    height:70,
                     margin: EdgeInsets.all(40),
                     child: ElevatedButton(
 
@@ -226,7 +227,7 @@ class _SignupPageState extends State<SignupPage> {
                               // go back to Login screen
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => LoginPage(title: 'Login Page')),
+                                MaterialPageRoute(builder: (context) => SelectCondiitonPage(title: ' Medical Conditions')),
                               );
                             }).catchError((e){
                               print("Failed to save the user information.");
@@ -245,6 +246,7 @@ class _SignupPageState extends State<SignupPage> {
                             fontSize: 18,
                           ),),
                       style:  ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.deepPurple.shade200),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0),

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
-
+import 'package:AUesome/pages/edit_image.dart';
 import 'package:AUesome/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,10 @@ import 'kitvids.dart';
 import 'signup.dart';
 import 'login.dart';
 import 'start_page.dart';
+import '../user/user.dart';
+import '../widgets/display_image_widget.dart';
+import '../user/user_data.dart';
+
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key, required this.title}) : super(key: key);
 
@@ -27,8 +31,11 @@ class _DashboardPageState extends State<DashboardPage> {
   final List<Widget> _pagelist= [];
 
   static const cardColor1 = const Color(0xffE8886D);
-    var cardColor2 = const Color(0xff99B8FF);
-  static const cardColor3 = const Color(0xffA49FF1);
+  var cardColor2 = const Color(0xff99B8FF);
+  static const cardColor3 = const Color(0xffbdb2ff);
+  final user = UserData.myUser;
+  //final String title;
+  //static const saturdayColor = const Color(0xffbdb2ff);
   // @override
   // void initState(){
   //   _pagelist
@@ -70,23 +77,33 @@ class _DashboardPageState extends State<DashboardPage> {
           Row(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top:50, left: 20, right: 80),
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://www.woolha.com/media/2020/03/eevee.png'
-                    ),
-                    radius: 55,
-
-                  ),
+                  margin: EdgeInsets.only(top:30, left: 35, right: 50),
+                  child:
+                  InkWell(
+                      onTap: () {
+                        //navigateSecondPage(EditImagePage());
+                      },
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage('https://cdn141.picsart.com/357697367045201.jpg'),//user.image),
+                        radius: 65,
+                        //onPressed: () {},
+                      )),
+                  // CircleAvatar(
+                  //   backgroundImage: NetworkImage(
+                  //       'https://cdn141.picsart.com/357697367045201.jpg'
+                  //   ),
+                  //   radius: 60,
+                  //
+                  // ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(right: 25,top:50),
+                      margin: EdgeInsets.only(right: 40,top:30),
 
-                      child: Text("Katherine Hua",
+                      child: Text("John Smith",
                         style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold
@@ -97,8 +114,8 @@ class _DashboardPageState extends State<DashboardPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(right:115),//top:15),
-                          child: Text("John D",
+                          margin: EdgeInsets.only(right:100),//top:15),
+                          child: Text("   Parent ",
                             style: TextStyle(
                               fontSize: 18,
                               //fontWeight: FontWeight.bold
@@ -334,7 +351,7 @@ class _DashboardPageState extends State<DashboardPage> {
           //   ],
           // ),
           Container(
-            margin: EdgeInsets.only(top: 10, left: 15),
+            margin: EdgeInsets.only(top: 0, left: 15),
             child: Text(
               "Activities",
               style: TextStyle(
@@ -347,7 +364,7 @@ class _DashboardPageState extends State<DashboardPage> {
           Container(
 
             height: 150,
-            margin: EdgeInsets.only(top:10, left:15,right:15,bottom: 20),
+            margin: EdgeInsets.only(top:10, left:15,right:15,bottom: 15),
             child: Card(
               elevation: 7,
               color:cardColor2,
@@ -404,7 +421,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       Container(
                         width: 100,
                         height: 40,
-                        margin: EdgeInsets.only(left:80, right: 25,top:20),
+                        margin: EdgeInsets.only(left:100, right: 25,top:20),
                         child: ElevatedButton(
 
                           onPressed: () {
@@ -452,8 +469,9 @@ class _DashboardPageState extends State<DashboardPage> {
                  flex:50,
                  child: Container(
                    height: 150,
-                   margin: EdgeInsets.only(left: 15),
+                   margin: EdgeInsets.only(left: 15, right: 5),
                    child: Card(
+                     color: cardColor3,
               elevation: 5,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(17.0),
@@ -507,35 +525,38 @@ class _DashboardPageState extends State<DashboardPage> {
                      shape: RoundedRectangleBorder(
                        borderRadius: BorderRadius.circular(17.0),
                      ),
-                     child: Row(
-                         mainAxisAlignment: MainAxisAlignment.start,
-                         //mainAxisSize: MainAxisSize.min,
-                         children: <Widget>[
+                     child: Container(
+                       //margin: EdgeInsets.only(),
+                       child: Row(
+                           mainAxisAlignment: MainAxisAlignment.start,
+                           //mainAxisSize: MainAxisSize.min,
+                           children: <Widget>[
 
-                           Container(
-                             margin: EdgeInsets.only(left: 10),
-                             child: Icon(
-                               Icons.video_collection_rounded,
-                               size: 50,
-                               color: CupertinoColors.darkBackgroundGray,
+                             Container(
+                               margin: EdgeInsets.only(left: 10),
+                               child: Icon(
+                                 Icons.video_collection_rounded,
+                                 size: 50,
+                                 color: CupertinoColors.darkBackgroundGray,
+                               ),
                              ),
-                           ),
-                           Container(
-                             margin: EdgeInsets.only( left: 10, right: 10),
-                             child: Row(
-                               children: [
-                                 Text("Videos",
-                                     style: TextStyle(
-                                       fontSize: 22,
-                                       fontWeight: FontWeight.w700,
-                                     )
-                                 ),
+                             Container(
+                               margin: EdgeInsets.only( left: 10, right: 10),
+                               child: Row(
+                                 children: [
+                                   Text("Videos",
+                                       style: TextStyle(
+                                         fontSize: 22,
+                                         fontWeight: FontWeight.w700,
+                                       )
+                                   ),
 
 
-                               ],
+                                 ],
+                               ),
                              ),
-                           ),
-                         ]
+                           ]
+                       ),
                      ),
                    ),
                  ),
@@ -561,6 +582,13 @@ class _DashboardPageState extends State<DashboardPage> {
           });
         }
     );
+  }
+  FutureOr onGoBack(dynamic value) {
+    setState(() {});
+  }
+  void navigateSecondPage(Widget editForm) {
+    Route route = MaterialPageRoute(builder: (context) => editForm);
+    Navigator.push(context, route).then(onGoBack);
   }
 }
 
